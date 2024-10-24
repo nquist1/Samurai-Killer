@@ -1,11 +1,13 @@
-#Stairz
+# Stairz
+"""sdklfj"""
 
-import keyboard 
+import os
 
-while True:
-    
-    # Main program here
 
-    if keyboard.is_pressed('q'):
-        print("You pressed 'q'. Exiting...")
-        break
+def run_program(img_directory, event_imgs):
+    """skdjf"""
+    img_folder = os.path.join(*img_directory, event_imgs)
+    images = os.listdir(img_folder)
+    print(images)
+    # if img_directory is None:
+    #     return
