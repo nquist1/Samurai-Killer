@@ -19,13 +19,16 @@ def berimond_gg():
     # berimond main code
 
 
-# Add a Hello button
-hello_button = tk.Button(
-    root,
-    text="Berimond - Classic",
-    command=lambda: run_program(DIR, "BerimondClassic/"),
-)
-hello_button.pack(pady=10)
+button_contents = [["Berimond - Classic", "BerimondClassic/"], ["Nomads", "Nomad/"]]
+
+# Add buttons
+for button in button_contents:
+    new_button = tk.Button(
+        root,
+        text=button[0],
+        command=lambda folder=button[1]: run_program(DIR, folder),
+    )
+    new_button.pack(pady=10)
 
 # Add a Quit button to close the window
 quit_button = tk.Button(root, text="Quit", command=root.quit)
