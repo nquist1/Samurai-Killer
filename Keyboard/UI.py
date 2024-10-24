@@ -2,7 +2,7 @@
 
 import tkinter as tk
 
-from beri_main import run_program
+from Keyboard.beri_main import run_program
 
 # Create the main window
 root = tk.Tk()
