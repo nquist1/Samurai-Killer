@@ -1,4 +1,4 @@
-#Stairz
+"""This file is responsible for the UI and is the main program"""
 
 import tkinter as tk
 
@@ -6,11 +6,14 @@ import tkinter as tk
 root = tk.Tk()
 root.title("Samurai Killer")
 
+
 # Create a function to print Hello
 def berimond_gg():
+    """This function does xyz"""
     print("Hello")
 
-    #berimond main code
+    # berimond main code
+
 
 # Add a Hello button
 hello_button = tk.Button(root, text="Berimond - Classic", command=berimond_gg)
