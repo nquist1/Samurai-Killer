@@ -26,7 +26,7 @@ for button in button_contents:
     new_button = tk.Button(
         root,
         text=button[0],
-        command=lambda folder=button[1]: run_program(DIR, folder),
+        command=lambda folder=button[1]: run_program(DIR, folder),#<--Can we add the command for the second UI here?
     )
     new_button.pack(pady=10)
 
