@@ -2,13 +2,19 @@
 
 import tkinter as tk
 
-from beri_main import run_program
+from beri_main import run_beri
 
 # Create the main window
 root = tk.Tk()
 root.title("Samurai Killer")
 
 DIR = ["Screenshots"]
+
+button_contents = [
+    ["Berimond - Classic", "BerimondClassic"],
+    ["Nomads", "Nomad"],
+    ["RobberBarron", "RobberBarron"],
+]
 
 
 # Create a function to print Hello
@@ -19,14 +25,18 @@ def berimond_gg():
     # berimond main code
 
 
-button_contents = [["Berimond - Classic", "BerimondClassic"], ["Nomads", "Nomad"],["RobberBarron","RobberBarron"]]
+def run_program(imgs_dir, img_folder):
+    """deals with ui forms"""
+    root.quit()
+    run_beri(imgs_dir, img_folder)
+
 
 # Add buttons
 for button in button_contents:
     new_button = tk.Button(
         root,
         text=button[0],
-        command=lambda folder=button[1]: run_program(DIR, folder),#<--Can we add the command for the second UI here?
+        command=lambda folder=button[1]: run_program(DIR, folder),
     )
     new_button.pack(pady=10)
 
