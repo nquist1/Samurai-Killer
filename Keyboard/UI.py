@@ -3,20 +3,7 @@
 import os
 import tkinter as tk
 
-from beri_main import middle_man
 from ui_coordinate_system.rb_cord_ui import coord_form
-
-# Create the main window
-root = tk.Tk()
-root.title("Samurai Killer")
-
-DIR = ["Screenshots"]
-
-button_contents = [
-    ["Berimond - Classic", "BerimondClassic"],
-    ["Nomads", "Nomad"],
-    ["RobberBarron", "RobberBarron"],
-]
 
 
 # Create a function to print Hello
@@ -27,27 +14,41 @@ def berimond_gg():
     # berimond main code
 
 
-def run_program(imgs_dir, img_folder):
+def run_program(main_window, imgs_dir, img_folder):
     """deals with ui forms"""
-    root.withdraw()
+    main_window.withdraw()
     img_folder = os.path.join(*imgs_dir, img_folder)
     images = os.listdir(os.path.join(img_folder, ""))
     print(images)
-    coord_form(root)
+    coord_form(main_window)
 
 
 # Add buttons
-for button in button_contents:
-    new_button = tk.Button(
-        root,
-        text=button[0],
-        command=lambda folder=button[1]: run_program(DIR, folder),
-    )
-    new_button.pack(pady=10)
 
-# Add a Quit button to close the window
-quit_button = tk.Button(root, text="Quit", command=root.quit)
-quit_button.pack(pady=10)
+if __name__ == "__main__":
+    # Create the main window
+    root = tk.Tk()
+    root.title("Samurai Killer")
 
-# Run the application
-root.mainloop()
+    DIR = ["Screenshots"]
+
+    button_contents = [
+        ["Berimond - Classic", "BerimondClassic"],
+        ["Nomads", "Nomad"],
+        ["RobberBarron", "RobberBarron"],
+    ]
+
+    for button in button_contents:
+        new_button = tk.Button(
+            root,
+            text=button[0],
+            command=lambda folder=button[1]: run_program(root, DIR, folder),
+        )
+        new_button.pack(pady=10)
+
+    # Add a Quit button to close the window
+    quit_button = tk.Button(root, text="Quit", command=root.destroy)
+    quit_button.pack(pady=10)
+
+    # Run the application
+    root.mainloop()
