@@ -27,8 +27,8 @@ def berimond_gg():
 
 def run_program(imgs_dir, img_folder):
     """deals with ui forms"""
-    root.quit()
-    run_beri(imgs_dir, img_folder)
+    root.withdraw()
+    run_beri(root, imgs_dir, img_folder)
 
 
 # Add buttons
