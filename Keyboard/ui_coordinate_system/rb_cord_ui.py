@@ -10,13 +10,13 @@ def coord_form(root):
     # Create the main window
     popup = tk.Tk()
     popup.title("Coordinate Input Example")
-    popup.geometry("350x400")
+    popup.geometry("275x400")
 
     count = 5
 
     for i in range(count):
         # Create labels and entry fields for x and y coordinates
-        x_label = tk.Label(popup, text="Enter coordinates:")
+        x_label = tk.Label(popup, text=f"Enter coordinate {i + 1}:")
         x_label.grid(row=i, column=0, padx=5, pady=5)
 
         x_entry = tk.Entry(popup, width=5)
