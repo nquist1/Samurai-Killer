@@ -19,7 +19,7 @@ def berimond_gg():
     # berimond main code
 
 
-button_contents = [["Berimond - Classic", "BerimondClassic/"], ["Nomads", "Nomad/"]]
+button_contents = [["Berimond - Classic", "BerimondClassic"], ["Nomads", "Nomad"]]
 
 # Add buttons
 for button in button_contents:
