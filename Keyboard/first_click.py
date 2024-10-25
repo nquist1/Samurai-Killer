@@ -40,26 +40,13 @@ def image_choose(i):
     return located(location_on_screen)
 
 
-image_choose(0)
-pyautogui.press("tab")
-pyautogui.press("6")
-pyautogui.press("6")
-pyautogui.press("3")
-pyautogui.press("tab")
-pyautogui.press("6")
-pyautogui.press("5")
-pyautogui.press("4")
-pyautogui.press("enter")
-time.sleep(2)
-image_choose(1)
-time.sleep(1.5)
-image_choose(2)
-time.sleep(2)
-image_choose(3)
-time.sleep(0.5)
-image_choose(4)
-time.sleep(1.5)
-image_choose(5)
-time.sleep(0.7)
-image_choose(6)
-
+user_input1 = #Need User Input!
+user_input2 = #Need User Input!
+def enter_cord(user_input1,user_input2):
+    pyautogui.press("tab")
+    for i in range(len(user_input1)):
+        pyautogui.press(i)
+    pyautogui.press("tab")
+    for i in range(len(user_input2)):
+        pyautogui.press(i)
+    pyautogui.press("enter")
