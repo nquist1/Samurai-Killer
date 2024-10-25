@@ -1,8 +1,10 @@
 """This file is responsible for the UI and is the main program"""
 
+import os
 import tkinter as tk
 
-from beri_main import run_beri
+from beri_main import middle_man
+from ui_coordinate_system.rb_cord_ui import coord_form
 
 # Create the main window
 root = tk.Tk()
@@ -28,7 +30,10 @@ def berimond_gg():
 def run_program(imgs_dir, img_folder):
     """deals with ui forms"""
     root.withdraw()
-    run_beri(root, imgs_dir, img_folder)
+    img_folder = os.path.join(*imgs_dir, img_folder)
+    images = os.listdir(os.path.join(img_folder, ""))
+    print(images)
+    coord_form(root)
 
 
 # Add buttons
