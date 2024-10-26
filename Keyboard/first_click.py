@@ -20,16 +20,6 @@ result = find_folder(folder_name)
 if result:
     files = os.listdir(result)
 
-
-def located(location_on_screen):
-    if location_on_screen:
-        pyautogui.moveTo(location_on_screen, duration=0.5)
-        pyautogui.click(pyautogui.center(location_on_screen))
-        print("Screenshot found and clicked!")
-    else:
-        print("Image not found on screen")
-
-
 def image_choose(i):
     print(files[i])
     old_path = result
@@ -39,9 +29,16 @@ def image_choose(i):
     location_on_screen = pyautogui.locateOnScreen(new_path, confidence=0.85)
     return located(location_on_screen)
 
+def located(location_on_screen):
+    if location_on_screen:
+        pyautogui.moveTo(location_on_screen, duration=0.5)
+        pyautogui.click(pyautogui.center(location_on_screen))
+        print("Screenshot found and clicked!")
+    else:
+        print("Image not found on screen")
 
-user_input1 = #Need User Input!
-user_input2 = #Need User Input!
+cord1 = 413
+cord2 = 1157
 def enter_cord(user_input1,user_input2):
     pyautogui.press("tab")
     for i in range(len(user_input1)):
@@ -50,3 +47,8 @@ def enter_cord(user_input1,user_input2):
     for i in range(len(user_input2)):
         pyautogui.press(i)
     pyautogui.press("enter")
+
+image_choose(0)
+enter_cord(cord1,cord2)
+for i in range(len(files)):
+    image_choose(i+1)
