@@ -1,5 +1,18 @@
 import tkinter as tk
 from tkinter import messagebox
+from coordinate_link import print_coordinate
+
+def read_coordinates_from_file(filename):
+    try:
+        with open(filename, 'r') as file:
+            contents = file.readlines()
+        # Convert lines to tuples of integers
+        coordinates = [tuple(map(int, line.strip().split(', '))) for line in contents]
+        return coordinates
+    except FileNotFoundError:
+        return [(0, 0) for _ in range(5)]  # Default values if file not found
+    except ValueError:
+        return [(0, 0) for _ in range(5)]  # Default values if there's an error in format
 
 def on_save(popup):
     # Collect the user input
@@ -23,6 +36,7 @@ def coord_form(root):
     popup.geometry("275x400")
 
     count = 5
+    coordinates = read_coordinates_from_file('rb_coordinates.txt')
 
     for i in range(count):
         # Create labels and entry fields for x and y coordinates
@@ -31,12 +45,14 @@ def coord_form(root):
 
         x_entry = tk.Entry(popup, width=5)
         x_entry.grid(row=i, column=1, padx=5, pady=5)
+        x_entry.insert(0, coordinates[i][0])  # Pre-fill with x coordinate
 
         y_label = tk.Label(popup, text=" ")
         y_label.grid(row=i, column=2, padx=5, pady=5)
 
         y_entry = tk.Entry(popup, width=5)
         y_entry.grid(row=i, column=2, padx=5, pady=5)
+        y_entry.insert(0, coordinates[i][1])  # Pre-fill with y coordinate
 
     # Create a submit button
     submit_button = tk.Button(
