@@ -6,16 +6,8 @@ import tkinter as tk
 from ui_coordinate_system.rb_cord_ui import coord_form
 
 
-# Create a function to print Hello
-def berimond_gg():
-    """This function does xyz"""
-    print("Hello")
-
-    # berimond main code
-
-
 def run_program(main_window, imgs_dir, img_folder):
-    """deals with ui forms"""
+    """Opens the UI delegated interface to edit the coords"""
     main_window.withdraw()
     img_folder = os.path.join(*imgs_dir, img_folder)
     images = os.listdir(os.path.join(img_folder, ""))
