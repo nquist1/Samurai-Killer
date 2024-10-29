@@ -3,16 +3,16 @@
 import os
 import tkinter as tk
 
-from ui_coordinate_system.rb_cord_ui import coord_form
+from coord_ui import coord_form
 
 
 def run_program(main_window, imgs_dir, img_folder):
     """Opens the UI delegated interface to edit the coords"""
     main_window.withdraw()
-    img_folder = os.path.join(*imgs_dir, img_folder)
-    images = os.listdir(os.path.join(img_folder, ""))
+    path_to_folder = os.path.join(*imgs_dir, img_folder)
+    images = os.listdir(os.path.join(path_to_folder, ""))
     print(images)
-    coord_form(main_window)
+    coord_form(main_window, img_folder + ".txt")
 
 
 # Add buttons

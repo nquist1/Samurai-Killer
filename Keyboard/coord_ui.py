@@ -3,13 +3,15 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from coordinate_link import FILE_FOLDER
+
 NUMBER_OF_COORDS = 5
 
 
 def read_coordinates_from_file(filename):
     """Read in coords or default them to 0"""
     try:
-        with open(filename, "r", encoding="UTF-8") as file:
+        with open(FILE_FOLDER + filename, "r", encoding="UTF-8") as file:
             contents = file.readlines()
         # Convert lines to tuples of integers
         coordinates = [tuple(map(int, line.strip().split(", "))) for line in contents]
@@ -24,7 +26,7 @@ def read_coordinates_from_file(filename):
         ]  # Default values if there's an error in format
 
 
-def on_save(popup):
+def on_save(popup, text_file):
     """Save the inputed values to file"""
     # Collect the user input
     coordinates = []
@@ -34,14 +36,16 @@ def on_save(popup):
         coordinates.append((x_value, y_value))
 
     # Save the coordinates to a file
-    with open("rb_coordinates.txt", "w", encoding="UTF-8") as file:
+    with open(FILE_FOLDER + text_file, "w", encoding="UTF-8") as file:
         for coord in coordinates:
             file.write(f"{coord[0]}, {coord[1]}\n")
 
-    messagebox.showinfo("Saved", "Coordinates have been saved to 'rb_coordinates.txt'.")
+    messagebox.showinfo(
+        "Saved", f"Coordinates have been saved to '{FILE_FOLDER}{text_file}'."
+    )
 
 
-def coord_form(ui_window):
+def coord_form(ui_window, file_read):
     """Create the UI for customizing the coordinates"""
     # Create the main window
     popup = tk.Tk()
@@ -50,7 +54,7 @@ def coord_form(ui_window):
 
     # TODO: make this file work for each UI not just robberbarron
     count = 5
-    coordinates = read_coordinates_from_file("rb_coordinates.txt")
+    coordinates = read_coordinates_from_file(file_read)
 
     for i in range(count):
         # Create labels and entry fields for x and y coordinates
@@ -69,7 +73,9 @@ def coord_form(ui_window):
         y_entry.insert(0, str(coordinates[i][1]))  # Pre-fill with y coordinate
 
     # Create a submit button
-    submit_button = tk.Button(popup, text="Save", command=lambda: on_save(popup))
+    submit_button = tk.Button(
+        popup, text="Save", command=lambda: on_save(popup, file_read)
+    )
     submit_button.grid(row=count, columnspan=4, pady=10)
 
     quit_button = tk.Button(

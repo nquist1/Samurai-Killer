@@ -1,10 +1,12 @@
 """File processing for coordinates"""
 
+FILE_FOLDER = "Coords/"
+
 
 def read_file(filename):
     """Read in file and save contents to an array"""
     try:
-        with open(filename, "r", encoding="UTF-8") as file:
+        with open(FILE_FOLDER + filename, "r", encoding="UTF-8") as file:
             contents = file.readlines()
 
         # Convert the lines to a list of tuples (x, y)
