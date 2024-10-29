@@ -15,6 +15,8 @@ def read_coordinates_from_file(filename):
             contents = file.readlines()
         # Convert lines to tuples of integers
         coordinates = [tuple(map(int, line.strip().split(", "))) for line in contents]
+        while len(coordinates) < NUMBER_OF_COORDS:
+            coordinates.append((0, 0))
         return coordinates
     except FileNotFoundError:
         return [
@@ -38,7 +40,11 @@ def on_save(popup, text_file):
     # Save the coordinates to a file
     with open(FILE_FOLDER + text_file, "w", encoding="UTF-8") as file:
         for coord in coordinates:
-            file.write(f"{coord[0]}, {coord[1]}\n")
+            if coord[0] == "" and coord[1] == "":
+                continue
+            x_coord = coord[0] if coord[0] != "" else 0
+            y_coord = coord[1] if coord[1] != "" else 0
+            file.write(f"{x_coord}, {y_coord}\n")
 
     messagebox.showinfo(
         "Saved", f"Coordinates have been saved to '{FILE_FOLDER}{text_file}'."
@@ -57,20 +63,25 @@ def coord_form(ui_window, file_read):
     coordinates = read_coordinates_from_file(file_read)
 
     for i in range(count):
+        x_coord = coordinates[i][0]
+        y_coord = coordinates[i][1]
+        if x_coord == 0 and y_coord == 0:
+            x_coord = ""
+            y_coord = ""
         # Create labels and entry fields for x and y coordinates
         x_label = tk.Label(popup, text=f"Enter coordinate {i + 1}:")
         x_label.grid(row=i, column=0, padx=5, pady=5)
 
         x_entry = tk.Entry(popup, width=5)
         x_entry.grid(row=i, column=1, padx=5, pady=5)
-        x_entry.insert(0, str(coordinates[i][0]))  # Pre-fill with x coordinate
+        x_entry.insert(0, str(x_coord))  # Pre-fill with x coordinate
 
         y_label = tk.Label(popup, text=" ")
         y_label.grid(row=i, column=2, padx=5, pady=5)
 
         y_entry = tk.Entry(popup, width=5)
         y_entry.grid(row=i, column=2, padx=5, pady=5)
-        y_entry.insert(0, str(coordinates[i][1]))  # Pre-fill with y coordinate
+        y_entry.insert(0, str(y_coord))  # Pre-fill with y coordinate
 
     # Create a submit button
     submit_button = tk.Button(
@@ -93,15 +104,15 @@ def go_back_form(main_window, current):
     main_window.deiconify()
 
 
-# Example usage
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Main Window")
-    root.geometry("300x200")
-    open_button = tk.Button(
-        root,
-        text="Open Coordinate Form",
-        command=lambda: coord_form(root),
-    )
-    open_button.pack(pady=20)
-    root.mainloop()
+# # Example usage
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     root.title("Main Window")
+#     root.geometry("300x200")
+#     open_button = tk.Button(
+#         root,
+#         text="Open Coordinate Form",
+#         command=lambda: coord_form(root),
+#     )
+#     open_button.pack(pady=20)
+#     root.mainloop()
